@@ -6,12 +6,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LogoMark } from "@/components/layout/logo-mark";
-import { Button, Field, Input, PasswordInput } from "@/components/ui";
+import { Field, Input, PasswordInput } from "@/components/ui";
 import { routes } from "@/config/routes";
 import { ApiError } from "@/lib/api/errors";
 import { signUp } from "../api";
 import { type SignUpInput, SignUpSchema } from "../schemas";
 import { OAuthButtons } from "./oauth-buttons";
+import { SubmitButton } from "./submit-button";
 
 export function SignUpForm() {
   const router = useRouter();
@@ -30,30 +31,28 @@ export function SignUpForm() {
     setSubmitError(null);
     try {
       await signUp(values);
-      router.push(routes.home);
+      router.push(routes.dashboard);
     } catch (error) {
-      if (error instanceof ApiError) {
-        setSubmitError(error.message);
-      } else {
-        setSubmitError("Something went wrong. Please try again.");
-      }
+      setSubmitError(
+        error instanceof ApiError ? error.message : "Something went wrong. Please try again.",
+      );
     }
   };
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col items-center gap-5">
         <LogoMark />
-        <h1 className="text-3xl font-bold text-fg">Sign up</h1>
+        <h1 className="text-4xl font-bold tracking-tight text-fg">Sign up</h1>
       </div>
 
       <OAuthButtons mode="sign-up" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" noValidate>
         <Field label="Email" error={errors.email?.message}>
-          {(fieldProps) => (
+          {(fp) => (
             <Input
-              {...fieldProps}
+              {...fp}
               {...register("email")}
               type="email"
               autoComplete="email"
@@ -62,14 +61,10 @@ export function SignUpForm() {
           )}
         </Field>
 
-        <Field
-          label="Password"
-          error={errors.password?.message}
-          hint={errors.password?.message ? undefined : "Use at least 6 characters"}
-        >
-          {(fieldProps) => (
+        <Field label="Password" error={errors.password?.message}>
+          {(fp) => (
             <PasswordInput
-              {...fieldProps}
+              {...fp}
               {...register("password")}
               autoComplete="new-password"
               placeholder="Use at least 6 characters"
@@ -83,22 +78,17 @@ export function SignUpForm() {
           </p>
         )}
 
-        <Button type="submit" intent="primary" className="w-full h-11" disabled={isSubmitting}>
-          {isSubmitting ? "Creating account..." : "Continue with email"}
-        </Button>
+        <SubmitButton isSubmitting={isSubmitting} pendingLabel="Creating account..." />
+
+        <p className="text-center text-sm text-fg-muted">
+          Already have an account?{" "}
+          <Link href={routes.logIn} className="font-semibold text-fg hover:underline">
+            Log in
+          </Link>
+        </p>
       </form>
 
       <p className="text-center text-sm text-fg-muted">
-        Already have an account?{" "}
-        <Link
-          href={routes.logIn}
-          className="font-medium text-fg underline-offset-4 hover:underline"
-        >
-          Log in
-        </Link>
-      </p>
-
-      <p className="text-center text-xs text-fg-muted">
         By continuing you agree to our{" "}
         <Link href="#" className="underline">
           Privacy Policy
@@ -107,7 +97,6 @@ export function SignUpForm() {
         <Link href="#" className="underline">
           Terms of Service
         </Link>
-        .
       </p>
     </div>
   );

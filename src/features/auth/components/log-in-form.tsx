@@ -6,12 +6,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LogoMark } from "@/components/layout/logo-mark";
-import { Button, Field, Input, PasswordInput } from "@/components/ui";
+import { Field, Input, PasswordInput } from "@/components/ui";
 import { routes } from "@/config/routes";
 import { ApiError } from "@/lib/api/errors";
 import { logIn } from "../api";
 import { type LogInInput, LogInSchema } from "../schemas";
 import { OAuthButtons } from "./oauth-buttons";
+import { SubmitButton } from "./submit-button";
 
 export function LogInForm() {
   const router = useRouter();
@@ -30,30 +31,28 @@ export function LogInForm() {
     setSubmitError(null);
     try {
       await logIn(values);
-      router.push(routes.home);
+      router.push(routes.dashboard);
     } catch (error) {
-      if (error instanceof ApiError) {
-        setSubmitError(error.message);
-      } else {
-        setSubmitError("Something went wrong. Please try again.");
-      }
+      setSubmitError(
+        error instanceof ApiError ? error.message : "Something went wrong. Please try again.",
+      );
     }
   };
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col items-center gap-5">
         <LogoMark />
-        <h1 className="text-3xl font-bold text-fg">Welcome back</h1>
+        <h1 className="text-4xl font-bold tracking-tight text-fg">Log in</h1>
       </div>
 
       <OAuthButtons mode="log-in" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" noValidate>
         <Field label="Email" error={errors.email?.message}>
-          {(fieldProps) => (
+          {(fp) => (
             <Input
-              {...fieldProps}
+              {...fp}
               {...register("email")}
               type="email"
               autoComplete="email"
@@ -63,12 +62,12 @@ export function LogInForm() {
         </Field>
 
         <Field label="Password" error={errors.password?.message}>
-          {(fieldProps) => (
+          {(fp) => (
             <PasswordInput
-              {...fieldProps}
+              {...fp}
               {...register("password")}
               autoComplete="current-password"
-              placeholder="Enter your password"
+              placeholder="Use at least 6 characters"
             />
           )}
         </Field>
@@ -79,18 +78,32 @@ export function LogInForm() {
           </p>
         )}
 
-        <Button type="submit" intent="primary" className="w-full h-11" disabled={isSubmitting}>
-          {isSubmitting ? "Logging in..." : "Continue with email"}
-        </Button>
+        <SubmitButton isSubmitting={isSubmitting} pendingLabel="Logging in..." />
+
+        <div className="flex flex-col items-center gap-1 text-sm text-fg-muted">
+          <p>
+            No account?{" "}
+            <Link href={routes.signUp} className="font-semibold text-fg hover:underline">
+              Create one now
+            </Link>
+          </p>
+          <p>
+            Forgot your password?{" "}
+            <Link href="#" className="font-semibold text-fg hover:underline">
+              Recover now
+            </Link>
+          </p>
+        </div>
       </form>
 
       <p className="text-center text-sm text-fg-muted">
-        Don&apos;t have an account?{" "}
-        <Link
-          href={routes.signUp}
-          className="font-medium text-fg underline-offset-4 hover:underline"
-        >
-          Sign up
+        By continuing you agree to our{" "}
+        <Link href="#" className="underline">
+          Privacy Policy
+        </Link>{" "}
+        and{" "}
+        <Link href="#" className="underline">
+          Terms of Service
         </Link>
       </p>
     </div>

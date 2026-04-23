@@ -3,12 +3,12 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils/cn";
 
 const chipVariants = cva(
-  "inline-flex items-center gap-1.5 rounded-full px-3 h-8 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex min-w-9 items-center justify-center gap-2 rounded-full border px-3 py-1.5 text-center text-xs font-medium leading-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       selected: {
-        true: "bg-inverse text-fg-inverse",
-        false: "bg-transparent text-fg-muted hover:bg-muted hover:text-fg",
+        true: "border-gray-8 bg-gray-10 text-fg-inverse",
+        false: "border-gray-2 bg-gray-1 text-gray-11 hover:border-gray-3",
       },
     },
     defaultVariants: {
