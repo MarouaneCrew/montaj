@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 type OAuthProvider = "google" | "apple";
 
 type OAuthButtonsProps = {
@@ -7,18 +9,16 @@ type OAuthButtonsProps = {
   onSelect?: (provider: OAuthProvider) => void;
 };
 
-const verb: Record<OAuthButtonsProps["mode"], string> = {
-  "sign-up": "Sign up",
-  "log-in": "Log in",
-};
-
 export function OAuthButtons({ mode, onSelect }: OAuthButtonsProps) {
+  const t = useTranslations("auth.oauth");
+  const key = mode === "log-in" ? "loginWith" : "signupWith";
+
   return (
     <div className="flex flex-col gap-2">
-      <OAuthButton provider="google" label={`${verb[mode]} with Google`} onClick={onSelect}>
+      <OAuthButton provider="google" label={t(key, { provider: t("google") })} onClick={onSelect}>
         <GoogleIcon />
       </OAuthButton>
-      <OAuthButton provider="apple" label={`${verb[mode]} with Apple`} onClick={onSelect}>
+      <OAuthButton provider="apple" label={t(key, { provider: t("apple") })} onClick={onSelect}>
         <AppleIcon />
       </OAuthButton>
     </div>

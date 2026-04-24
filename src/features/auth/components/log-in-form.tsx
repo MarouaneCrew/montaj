@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LogoMark } from "@/components/layout/logo-mark";
@@ -10,12 +11,14 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { ApiError } from "@/lib/api/errors";
 import { logIn } from "../api";
 import { type LogInInput, LogInSchema } from "../schemas";
+import { LegalNotice } from "./legal-notice";
 import { OAuthButtons } from "./oauth-buttons";
 import { SubmitButton } from "./submit-button";
 
 export function LogInForm() {
   const router = useRouter();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const t = useTranslations("auth");
 
   const {
     register,
@@ -32,9 +35,7 @@ export function LogInForm() {
       await logIn(values);
       router.push(routes.dashboard);
     } catch (error) {
-      setSubmitError(
-        error instanceof ApiError ? error.message : "Something went wrong. Please try again.",
-      );
+      setSubmitError(error instanceof ApiError ? error.message : t("errors.generic"));
     }
   };
 
@@ -42,31 +43,31 @@ export function LogInForm() {
     <div className="flex flex-col gap-8">
       <div className="flex flex-col items-center gap-5">
         <LogoMark />
-        <h1 className="text-4xl font-bold tracking-tight text-fg">Log in</h1>
+        <h1 className="text-4xl font-bold tracking-tight text-fg">{t("login.title")}</h1>
       </div>
 
       <OAuthButtons mode="log-in" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" noValidate>
-        <Field label="Email" error={errors.email?.message}>
+        <Field label={t("form.emailLabel")} error={errors.email?.message}>
           {(fp) => (
             <Input
               {...fp}
               {...register("email")}
               type="email"
               autoComplete="email"
-              placeholder="Enter your email"
+              placeholder={t("form.emailPlaceholder")}
             />
           )}
         </Field>
 
-        <Field label="Password" error={errors.password?.message}>
+        <Field label={t("form.passwordLabel")} error={errors.password?.message}>
           {(fp) => (
             <PasswordInput
               {...fp}
               {...register("password")}
               autoComplete="current-password"
-              placeholder="Use at least 6 characters"
+              placeholder={t("form.passwordPlaceholder")}
             />
           )}
         </Field>
@@ -77,34 +78,31 @@ export function LogInForm() {
           </p>
         )}
 
-        <SubmitButton isSubmitting={isSubmitting} pendingLabel="Logging in..." />
+        <SubmitButton isSubmitting={isSubmitting} pendingLabel={t("login.pendingLabel")} />
 
         <div className="flex flex-col items-center gap-1 text-sm text-fg-muted">
           <p>
-            No account?{" "}
-            <Link href={routes.signUp} className="font-semibold text-fg hover:underline">
-              Create one now
-            </Link>
+            {t.rich("login.noAccount", {
+              link: (chunks) => (
+                <Link href={routes.signUp} className="font-semibold text-fg hover:underline">
+                  {chunks}
+                </Link>
+              ),
+            })}
           </p>
           <p>
-            Forgot your password?{" "}
-            <Link href="#" className="font-semibold text-fg hover:underline">
-              Recover now
-            </Link>
+            {t.rich("login.forgotPassword", {
+              link: (chunks) => (
+                <Link href="#" className="font-semibold text-fg hover:underline">
+                  {chunks}
+                </Link>
+              ),
+            })}
           </p>
         </div>
       </form>
 
-      <p className="text-center text-sm text-fg-muted">
-        By continuing you agree to our{" "}
-        <Link href="#" className="underline">
-          Privacy Policy
-        </Link>{" "}
-        and{" "}
-        <Link href="#" className="underline">
-          Terms of Service
-        </Link>
-      </p>
+      <LegalNotice />
     </div>
   );
 }

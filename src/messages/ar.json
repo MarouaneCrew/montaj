@@ -69,6 +69,42 @@
       "tutorial": "الدروس"
     }
   },
+  "auth": {
+    "login": {
+      "title": "تسجيل الدخول",
+      "pendingLabel": "جارٍ تسجيل الدخول...",
+      "noAccount": "ليس لديك حساب؟ <link>أنشئ حسابًا الآن</link>",
+      "forgotPassword": "نسيت كلمة المرور؟ <link>استعادة الآن</link>"
+    },
+    "signup": {
+      "title": "إنشاء حساب",
+      "pendingLabel": "جارٍ إنشاء الحساب...",
+      "haveAccount": "لديك حساب بالفعل؟ <link>تسجيل الدخول</link>"
+    },
+    "form": {
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "أدخل بريدك الإلكتروني",
+      "passwordLabel": "كلمة المرور",
+      "passwordPlaceholder": "استخدم 6 أحرف على الأقل"
+    },
+    "submit": {
+      "label": "المتابعة بالبريد الإلكتروني",
+      "pending": "يرجى الانتظار..."
+    },
+    "oauth": {
+      "loginWith": "تسجيل الدخول عبر {provider}",
+      "signupWith": "إنشاء حساب عبر {provider}",
+      "google": "جوجل",
+      "apple": "آبل"
+    },
+    "legal": "بالمتابعة، فإنك توافق على <privacy>سياسة الخصوصية</privacy> و<terms>شروط الخدمة</terms> الخاصة بنا",
+    "errors": {
+      "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+    },
+    "sidePanel": {
+      "caption": "تم الإنشاء في Muntaj"
+    }
+  },
   "tools": {
     "main-product-image": {
       "title": "الصورة الرئيسية للمنتج",

@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui";
 
 type SubmitButtonProps = {
@@ -6,11 +9,11 @@ type SubmitButtonProps = {
   pendingLabel?: string;
 };
 
-export function SubmitButton({
-  isSubmitting,
-  label = "Continue with email",
-  pendingLabel = "Please wait...",
-}: SubmitButtonProps) {
+export function SubmitButton({ isSubmitting, label, pendingLabel }: SubmitButtonProps) {
+  const t = useTranslations("auth.submit");
+  const resolvedLabel = label ?? t("label");
+  const resolvedPending = pendingLabel ?? t("pending");
+
   return (
     <Button
       type="submit"
@@ -18,13 +21,13 @@ export function SubmitButton({
       className="h-12 w-full rounded-lg"
       disabled={isSubmitting}
     >
-      {isSubmitting ? pendingLabel : label}
-      {!isSubmitting && <ArrowIcon />}
+      {isSubmitting ? resolvedPending : resolvedLabel}
+      {!isSubmitting && <ArrowIcon className="rtl:-scale-x-100" />}
     </Button>
   );
 }
 
-function ArrowIcon() {
+function ArrowIcon({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,6 +36,7 @@ function ArrowIcon() {
       viewBox="0 0 14 12"
       fill="none"
       aria-hidden="true"
+      className={className}
     >
       <path
         d="M12.3214 5.75H0.75M7.60715 10.75C7.60715 10.75 12.75 7.06758 12.75 5.75C12.75 4.43233 7.60715 0.75 7.60715 0.75"

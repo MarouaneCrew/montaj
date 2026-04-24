@@ -69,6 +69,42 @@
       "tutorial": "Tutorials"
     }
   },
+  "auth": {
+    "login": {
+      "title": "Log in",
+      "pendingLabel": "Logging in...",
+      "noAccount": "No account? <link>Create one now</link>",
+      "forgotPassword": "Forgot your password? <link>Recover now</link>"
+    },
+    "signup": {
+      "title": "Sign up",
+      "pendingLabel": "Creating account...",
+      "haveAccount": "Already have an account? <link>Log in</link>"
+    },
+    "form": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "Enter your email",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Use at least 6 characters"
+    },
+    "submit": {
+      "label": "Continue with email",
+      "pending": "Please wait..."
+    },
+    "oauth": {
+      "loginWith": "Log in with {provider}",
+      "signupWith": "Sign up with {provider}",
+      "google": "Google",
+      "apple": "Apple"
+    },
+    "legal": "By continuing you agree to our <privacy>Privacy Policy</privacy> and <terms>Terms of Service</terms>",
+    "errors": {
+      "generic": "Something went wrong. Please try again."
+    },
+    "sidePanel": {
+      "caption": "Generated in Muntaj"
+    }
+  },
   "tools": {
     "main-product-image": {
       "title": "Main Product Image",
