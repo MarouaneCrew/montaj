@@ -1,0 +1,94 @@
+{
+  "app": {
+    "name": "منتج"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "imageGenerator": "مولد الصور",
+    "videoGenerator": "مولد الفيديو",
+    "templates": "القوالب",
+    "library": "المكتبة",
+    "allTools": "جميع الأدوات"
+  },
+  "sidebar": {
+    "createImage": "إنشاء صورة",
+    "inviteAndEarn": "ادعُ واربح",
+    "trialEndsIn": "تنتهي التجربة خلال {days} أيام",
+    "credits": "{count} رصيد"
+  },
+  "topbar": {
+    "pricing": "الأسعار",
+    "toggleTheme": {
+      "toDark": "التبديل إلى الوضع الداكن",
+      "toLight": "التبديل إلى الوضع الفاتح"
+    },
+    "changeLanguage": "تغيير اللغة",
+    "notifications": "الإشعارات"
+  },
+  "dashboard": {
+    "createToday": {
+      "title": "ماذا تريد أن تنشئ اليوم؟",
+      "empty": {
+        "title": "لا توجد أدوات في هذه الفئة",
+        "description": "جرب مرشحًا مختلفًا."
+      }
+    },
+    "recentWork": {
+      "title": "الأعمال الأخيرة",
+      "empty": {
+        "title": "لا توجد أعمال حديثة في هذه الفئة",
+        "description": "جرب مرشحًا مختلفًا."
+      }
+    },
+    "getInspired": {
+      "title": "استوحِ",
+      "searchPlaceholder": "ابحث في القوالب",
+      "exploreAll": "استكشف كل القوالب",
+      "empty": {
+        "title": "لا يوجد شيء هنا بعد",
+        "description": "جرب مرشحًا مختلفًا."
+      }
+    },
+    "whatsNew": {
+      "title": "ما الجديد"
+    }
+  },
+  "filters": {
+    "photos": {
+      "all": "الكل",
+      "products": "صور المنتجات",
+      "campaign": "صور الحملات",
+      "lifestyle": "صور نمط الحياة",
+      "model": "صور العارضين",
+      "promo": "صور ترويجية",
+      "enhance": "تحسين الصور"
+    },
+    "inspiration": {
+      "template": "القوالب",
+      "style": "الأنماط",
+      "tutorial": "الدروس"
+    }
+  },
+  "tools": {
+    "main-product-image": {
+      "title": "الصورة الرئيسية للمنتج",
+      "subtitle": "حوّل صور منتجك إلى لقطات احترافية مثالية لأي منصة تجارة إلكترونية."
+    },
+    "multiple-angles": {
+      "title": "زوايا متعددة",
+      "subtitle": "اعرض منتجك من زوايا متعددة للحصول على رؤية بصرية شاملة."
+    },
+    "close-up-detail": {
+      "title": "تفاصيل مُقرَّبة",
+      "subtitle": "أبرِز جودة منتجك بلقطات مقرَّبة تلتقط التفاصيل الدقيقة والمواد."
+    },
+    "flat-lay-setup": {
+      "title": "عرض مسطَّح",
+      "subtitle": "أنشئ صور عرض مسطَّحة مُنسَّقة تُبرز منتجك بشكل جذّاب."
+    },
+    "360-product-view": {
+      "title": "عرض 360° للمنتج",
+      "subtitle": "أنتج صور 360° ديناميكية تمنح العملاء رؤية شاملة."
+    }
+  }
+}

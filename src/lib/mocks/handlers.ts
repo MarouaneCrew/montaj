@@ -1,4 +1,7 @@
 import { HttpResponse, http } from "msw";
+import { mockAssets } from "./fixtures/assets";
+import { mockTemplates } from "./fixtures/templates";
+import { mockTools } from "./fixtures/tools";
 
 const mockUser = {
   id: "user_1",
@@ -38,5 +41,32 @@ export const handlers = [
 
   http.post("/api/auth/log-out", () => {
     return new HttpResponse(null, { status: 204 });
+  }),
+
+  http.get("/api/tools", ({ request }) => {
+    const url = new URL(request.url);
+    const category = url.searchParams.get("category");
+    if (!category || category === "all") {
+      return HttpResponse.json(mockTools);
+    }
+    return HttpResponse.json(mockTools.filter((tool) => tool.category === category));
+  }),
+
+  http.get("/api/library/recent", ({ request }) => {
+    const url = new URL(request.url);
+    const category = url.searchParams.get("category");
+    if (!category || category === "all") {
+      return HttpResponse.json(mockAssets);
+    }
+    return HttpResponse.json(mockAssets.filter((asset) => asset.category === category));
+  }),
+
+  http.get("/api/templates", ({ request }) => {
+    const url = new URL(request.url);
+    const kind = url.searchParams.get("kind");
+    if (!kind || kind === "all") {
+      return HttpResponse.json(mockTemplates);
+    }
+    return HttpResponse.json(mockTemplates.filter((template) => template.kind === kind));
   }),
 ];

@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { type ComponentType, type SVGProps, useEffect, useState } from "react";
 import {
   AllToolsIcon,
@@ -13,22 +12,31 @@ import {
   VideoGeneratorIcon,
 } from "@/components/icons";
 import { routes } from "@/config/routes";
+import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils/cn";
 
+type NavLabelKey =
+  | "home"
+  | "templates"
+  | "allTools"
+  | "library"
+  | "imageGenerator"
+  | "videoGenerator";
+
 type NavItem = {
-  label: string;
+  labelKey: NavLabelKey;
   href: string;
   icon: ComponentType<SVGProps<SVGSVGElement>>;
 };
 
 const leftItems: NavItem[] = [
-  { label: "Home", href: routes.dashboard, icon: HomeIcon },
-  { label: "Templates", href: routes.templates, icon: TemplatesIcon },
+  { labelKey: "home", href: routes.dashboard, icon: HomeIcon },
+  { labelKey: "templates", href: routes.templates, icon: TemplatesIcon },
 ];
 
 const rightItems: NavItem[] = [
-  { label: "Tools", href: routes.tools, icon: AllToolsIcon },
-  { label: "Library", href: routes.library, icon: LibraryIcon },
+  { labelKey: "allTools", href: routes.tools, icon: AllToolsIcon },
+  { labelKey: "library", href: routes.library, icon: LibraryIcon },
 ];
 
 const SPRING = "cubic-bezier(0.34, 1.56, 0.64, 1)";
@@ -36,6 +44,7 @@ const SPRING = "cubic-bezier(0.34, 1.56, 0.64, 1)";
 export function AppBottomNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const tNav = useTranslations("nav");
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: close the menu on route change
   useEffect(() => {
@@ -63,7 +72,7 @@ export function AppBottomNav() {
         <div className="relative flex flex-1 flex-col items-center justify-end">
           <div className="absolute -top-6 left-1/2 h-14 w-14 -translate-x-1/2">
             <ArcItem
-              label="Image"
+              label={tNav("imageGenerator")}
               href={routes.imageGenerator}
               icon={ImageGeneratorIcon}
               open={open}
@@ -72,7 +81,7 @@ export function AppBottomNav() {
               delay={0}
             />
             <ArcItem
-              label="Video"
+              label={tNav("videoGenerator")}
               href={routes.videoGenerator}
               icon={VideoGeneratorIcon}
               open={open}
@@ -94,7 +103,9 @@ export function AppBottomNav() {
               <PlusSquareIcon className="h-7 w-7" />
             </button>
           </div>
-          <span className="pt-10 pb-1 text-[10px] font-medium text-fg-muted">Create</span>
+          <span className="pt-10 pb-1 text-[10px] font-medium text-fg-muted">
+            {tNav("imageGenerator")}
+          </span>
         </div>
 
         {rightItems.map((item) => (
@@ -107,6 +118,7 @@ export function AppBottomNav() {
 
 function NavLink({ item, active }: { item: NavItem; active: boolean }) {
   const Icon = item.icon;
+  const tNav = useTranslations("nav");
   return (
     <Link
       href={item.href}
@@ -117,7 +129,7 @@ function NavLink({ item, active }: { item: NavItem; active: boolean }) {
       )}
     >
       <Icon className="h-5 w-5" />
-      <span>{item.label}</span>
+      <span>{tNav(item.labelKey)}</span>
     </Link>
   );
 }

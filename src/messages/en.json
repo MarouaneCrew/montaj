@@ -1,0 +1,94 @@
+{
+  "app": {
+    "name": "Muntaj"
+  },
+  "nav": {
+    "home": "Home",
+    "imageGenerator": "Image Generator",
+    "videoGenerator": "Video Generator",
+    "templates": "Templates",
+    "library": "Library",
+    "allTools": "All tools"
+  },
+  "sidebar": {
+    "createImage": "Create an image",
+    "inviteAndEarn": "Invite and Earn",
+    "trialEndsIn": "Trial ends in {days} days",
+    "credits": "{count} Credits"
+  },
+  "topbar": {
+    "pricing": "Pricing",
+    "toggleTheme": {
+      "toDark": "Switch to dark mode",
+      "toLight": "Switch to light mode"
+    },
+    "changeLanguage": "Change language",
+    "notifications": "Notifications"
+  },
+  "dashboard": {
+    "createToday": {
+      "title": "What would you like to create today?",
+      "empty": {
+        "title": "No tools in this category",
+        "description": "Try a different filter."
+      }
+    },
+    "recentWork": {
+      "title": "Recent work",
+      "empty": {
+        "title": "No recent work in this category",
+        "description": "Try a different filter."
+      }
+    },
+    "getInspired": {
+      "title": "Get inspired",
+      "searchPlaceholder": "Search templates",
+      "exploreAll": "Explore all templates",
+      "empty": {
+        "title": "Nothing here yet",
+        "description": "Try a different filter."
+      }
+    },
+    "whatsNew": {
+      "title": "What's new"
+    }
+  },
+  "filters": {
+    "photos": {
+      "all": "All",
+      "products": "Products Photos",
+      "campaign": "Campaign Photos",
+      "lifestyle": "Lifestyle Photos",
+      "model": "Model Photos",
+      "promo": "Promo Photos",
+      "enhance": "Enhance Photos"
+    },
+    "inspiration": {
+      "template": "Templates",
+      "style": "Styles",
+      "tutorial": "Tutorials"
+    }
+  },
+  "tools": {
+    "main-product-image": {
+      "title": "Main Product Image",
+      "subtitle": "Turn your product photos into professional shots perfect for any e-commerce platform."
+    },
+    "multiple-angles": {
+      "title": "Multiple Angles",
+      "subtitle": "Show your product from multiple angles for complete visuals ideal."
+    },
+    "close-up-detail": {
+      "title": "Close-up Detail",
+      "subtitle": "Highlight your product's quality with close-ups that capture fine details and textures."
+    },
+    "flat-lay-setup": {
+      "title": "Flat Lay Setup",
+      "subtitle": "Create styled flat lay images that showcase your product attractively."
+    },
+    "360-product-view": {
+      "title": "360° Product View",
+      "subtitle": "Produce dynamic 360° photos that give customers a full view."
+    }
+  }
+}

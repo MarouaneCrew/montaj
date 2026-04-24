@@ -5,7 +5,7 @@ import { AppTopbar } from "@/components/layout/app-topbar";
 
 export function AppShell({ children }: { children: ReactNode }) {
   return (
-    <div className="flex h-svh gap-3 bg-muted p-3">
+    <div className="app-shell-bg flex h-svh gap-3 p-3">
       <AppSidebar />
       <div className="flex min-w-0 flex-1 flex-col gap-3">
         <AppTopbar />

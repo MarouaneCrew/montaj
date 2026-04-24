@@ -1,13 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LogoMark } from "@/components/layout/logo-mark";
 import { Field, Input, PasswordInput } from "@/components/ui";
 import { routes } from "@/config/routes";
+import { Link, useRouter } from "@/i18n/navigation";
 import { ApiError } from "@/lib/api/errors";
 import { signUp } from "../api";
 import { type SignUpInput, SignUpSchema } from "../schemas";

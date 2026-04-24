@@ -37,7 +37,7 @@ function OAuthButton({ provider, label, onClick, children }: OAuthButtonProps) {
     <button
       type="button"
       onClick={() => onClick?.(provider)}
-      className="flex h-11 w-full items-center justify-center gap-2.5 rounded-lg bg-gray-1 text-sm font-medium text-fg transition-colors hover:bg-gray-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      className="flex h-11 w-full items-center justify-center gap-2.5 rounded-lg bg-muted text-sm font-medium text-fg transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
     >
       {children}
       {label}

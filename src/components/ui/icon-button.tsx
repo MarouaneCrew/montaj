@@ -10,7 +10,7 @@ const iconButtonVariants = cva(
       intent: {
         ghost: "text-fg-muted hover:bg-muted hover:text-fg",
         outline: "border border-border bg-surface text-fg hover:bg-muted",
-        solid: "bg-inverse text-fg-inverse hover:bg-gray-9",
+        solid: "bg-inverse text-fg-inverse hover:opacity-90",
       },
       size: {
         sm: "h-8 w-8",

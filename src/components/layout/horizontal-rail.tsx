@@ -9,19 +9,17 @@ import {
   useRef,
   useState,
 } from "react";
-import { Chip } from "@/components/ui/chip";
 import { IconButton } from "@/components/ui/icon-button";
 
 type HorizontalRailProps = {
   title: string;
-  filters: readonly string[];
-  selectedIndex: number;
+  toolbar?: ReactNode;
   children: ReactNode;
 };
 
 const DRAG_THRESHOLD = 5;
 
-export function HorizontalRail({ title, filters, selectedIndex, children }: HorizontalRailProps) {
+export function HorizontalRail({ title, toolbar, children }: HorizontalRailProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const drag = useRef({ active: false, moved: false, startX: 0, startScrollLeft: 0 });
   const [hasOverflow, setHasOverflow] = useState(false);
@@ -92,15 +90,9 @@ export function HorizontalRail({ title, filters, selectedIndex, children }: Hori
   return (
     <section className="flex flex-col gap-5">
       <div className="flex flex-col gap-4">
-        <h2 className="self-stretch text-lg font-semibold leading-5 text-gray-9">{title}</h2>
+        <h2 className="self-stretch text-lg font-semibold leading-5 text-fg">{title}</h2>
         <div className="flex items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-2">
-            {filters.map((label, index) => (
-              <Chip key={label} selected={index === selectedIndex}>
-                {label}
-              </Chip>
-            ))}
-          </div>
+          <div className="flex min-w-0 flex-wrap items-center gap-2">{toolbar}</div>
           {hasOverflow && (
             <div className="flex shrink-0 items-center gap-2">
               <IconButton
@@ -109,10 +101,10 @@ export function HorizontalRail({ title, filters, selectedIndex, children }: Hori
                 size="sm"
                 onClick={() => scroll(-1)}
               >
-                <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+                <ChevronLeft className="h-4 w-4 rtl:-scale-x-100" aria-hidden="true" />
               </IconButton>
               <IconButton aria-label="Next" intent="outline" size="sm" onClick={() => scroll(1)}>
-                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                <ChevronRight className="h-4 w-4 rtl:-scale-x-100" aria-hidden="true" />
               </IconButton>
             </div>
           )}

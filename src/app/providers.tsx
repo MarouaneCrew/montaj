@@ -7,18 +7,21 @@ import { useState } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { createQueryClient } from "@/lib/api/query-client";
 import { MockProvider } from "@/lib/mocks/mock-provider";
+import { ThemeProvider } from "@/lib/theme/theme-provider";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(createQueryClient);
 
   return (
-    <MockProvider>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider delayDuration={200}>
-          <NuqsAdapter>{children}</NuqsAdapter>
-        </TooltipProvider>
-        <ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-right" />
-      </QueryClientProvider>
-    </MockProvider>
+    <ThemeProvider>
+      <MockProvider>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider delayDuration={200}>
+            <NuqsAdapter>{children}</NuqsAdapter>
+          </TooltipProvider>
+          <ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-right" />
+        </QueryClientProvider>
+      </MockProvider>
+    </ThemeProvider>
   );
 }

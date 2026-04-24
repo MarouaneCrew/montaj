@@ -204,4 +204,38 @@ body {
   background: var(--bg-canvas);
   color: var(--fg-default);
   font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+  transition: opacity 160ms ease;
+}
+
+html[lang="ar"] body {
+  font-family: var(--font-noto-arabic), var(--font-dm-sans), Arial, sans-serif;
+}
+
+/* Brief fade while next-intl swaps the locale route — masks the reflow
+   caused by dir/lang flipping on <html>. Set by <LocaleSwitcher>. */
+html[data-locale-swapping="true"] body {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   App shell background
+   A subtle radial warmth from the top, anchored in the mode's
+   base tone. Gives the inner panels a "floating" look without
+   drawing attention to itself.
+   ───────────────────────────────────────────────────────────── */
+.app-shell-bg {
+  background: radial-gradient(
+    ellipse 1200px 600px at 50% -200px,
+    color-mix(in oklch, var(--primary-500) 6%, var(--gray-1)),
+    var(--gray-1) 60%
+  );
+}
+
+.dark .app-shell-bg {
+  background: radial-gradient(
+    ellipse 1400px 700px at 50% -150px,
+    color-mix(in oklch, var(--primary-500) 5%, var(--black)),
+    var(--black) 65%
+  );
 }

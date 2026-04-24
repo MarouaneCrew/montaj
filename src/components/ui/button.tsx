@@ -8,9 +8,9 @@ const buttonVariants = cva(
   {
     variants: {
       intent: {
-        primary: "bg-inverse text-fg-inverse hover:bg-gray-9",
+        primary: "bg-inverse text-fg-inverse hover:opacity-90",
         brand: "bg-primary-500 text-fg-on-primary hover:bg-primary-600",
-        secondary: "bg-muted text-fg hover:bg-gray-2",
+        secondary: "bg-muted text-fg hover:opacity-80",
         outline: "border border-border bg-surface text-fg hover:bg-muted",
         ghost: "text-fg hover:bg-muted",
         destructive: "bg-destructive-500 text-white hover:bg-destructive-600",
